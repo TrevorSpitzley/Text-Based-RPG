@@ -16,3 +16,5 @@ things can be appended to the list? (Show code for better explanation)
 
 6.) For my import statements in House.py and Player.py, do I need to say 'import Zombie.py' with the '.py' extension 
 specifically? Or is saying 'import Zombie' correct?
+
+7.) Do I need a Person object for each House? Honestly unsure. 

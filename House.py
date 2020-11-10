@@ -10,11 +10,12 @@ class House(Observer):
         self.x_axis = x
         self.y_axis = y
         self.num_monsters = random.randint(0, 10)
-        self.location = [x, y]
+        self.grid_location = [x, y]
+        self.list_location = [y, x]
         self.monsters = []
         self.generate_monsters()
 
-    def generate_monsters(self, num):
+    def generate_monsters(self):
         if num == 1:
             v = vampire()
             v.add_observer(self)
