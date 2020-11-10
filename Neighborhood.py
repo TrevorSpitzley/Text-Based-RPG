@@ -28,6 +28,16 @@ class Neighborhood():
         else: 
             return False
 
+    def __walk(self, direction):
+        if direction == "north":
+            self.walk_north()
+        elif direction == "south":
+            self.walk_south()
+        elif direction == "east":
+            self.walk_east()
+        elif direction == "west":
+            self.walk_west()
+            
     def walk_south(self):
         # Keep in mind, 'a' is the which list you want
         # and 'b' is the spot in the list
@@ -109,6 +119,7 @@ class Neighborhood():
         print('\n')
 
     def update(self):
+        pass
         # Decrement mon_house
         # Check if 0, game over
 

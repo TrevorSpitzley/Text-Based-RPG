@@ -17,14 +17,9 @@ def main():
 
     while(game_on):
         cmd = input("What would you like to do?\n")
-        if cmd == "walk north":
-            N.walk_north()      
-        elif cmd == "walk south":
-            N.walk_south()
-        elif cmd == "walk east":
-            N.walk_east()
-        elif cmd == "walk west":
-            N.walk_west()
+        if cmd == "walk":
+            dir = input("Which direction would you like to walk? north/south/east/west are valid options")
+            N.__walk(dir)      
         elif cmd == "attack" and N.check_player_loc():
             # Get current house
             curr_house = N.player_loc
