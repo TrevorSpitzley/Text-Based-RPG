@@ -1,4 +1,8 @@
 import random
+import Vampire
+import Werewolf
+import Ghoul
+import Zombie
 
 class House(Observer):
 

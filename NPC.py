@@ -1,7 +1,11 @@
-class Vampire(NPC):
+class NPC():
 
-    def __init__(self):
-        super.__init__()
+    def __init__(self, x, y):
+        self.health_points = x
+        self.attack_strength = y
 
-    def update(self):
-        self.observer.update()
+    def get_health(self):
+        return self.health_points
+
+    def get_attack(self):
+        return self.attack_strength
