@@ -1,16 +1,14 @@
+from NPC import NPC
+from Observable import Observable
 import random as rnd
 
 class Zombie(NPC):
     
-    # Will doing this for the super.init make each zombie have the same attack and health?
-    # health = rnd.randint(50, 100)
-    # attack = rnd.randint(0, 10)
-
     def __init__(self):
-        super.__init__(rnd.randint(50, 100), rnd.randint(0, 10))
+        super().__init__(rnd.randint(50, 100), rnd.randint(0, 10))
         self.name = "Zombie"
 
-    def get_hit(weapon, player):
+    def get_hit(self, weapon, player):
         if weapon.name == "ChocolateBars":
             self.health_points -= (weapon.attack_mod * player.attack_mod)
         elif weapon.name == "HersheyKisses":

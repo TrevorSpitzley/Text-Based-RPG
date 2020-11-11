@@ -1,6 +1,8 @@
 import random
+from House import House
+from Observer import Observer
 
-class Neighborhood():
+class Neighborhood(Observer):
 
     def __init__(self):
         # Set up number of houses, location of houses, etc.
@@ -13,7 +15,7 @@ class Neighborhood():
                 ['.', '.', '.', '.', '.']
                 ]
         # List of house locations with (0,0) being upper left spot
-        self.house_locs = [(0, 1), (2, 0), (2, 4), (3, 3)]
+        self.house_locs = [[0, 1], [2, 0], [2, 4], [3, 3]]
         self.player_loc = [0, 0]
         self.houses = []
         self.generate_houses()
@@ -21,89 +23,105 @@ class Neighborhood():
     def generate_houses(self):
         h1 = House()
         self.houses.append(h1)
+        h1.add_observer(self)
+
+        h2 = House()
+        self.houses.append(h2)
+        h2.add_observer(h2)
+
+        h3 = House()
+        self.houses.append(h3)
+        h3.add_observer(self)
+
+        h4 = House()
+        self.houses.append(h4)
+        h4.add_observer(self)
 
     def check_player_loc(self):
-        if self.player_loc in self.house_locs:
-            return True
-        else: 
-            return False
+        return self.player_loc in self.house_locs
 
-    def __walk(self, direction):
+    def walk(self, direction):
         if direction == "north":
-            self.walk_north()
+            self.__walk_north()
         elif direction == "south":
-            self.walk_south()
+            self.__walk_south()
         elif direction == "east":
-            self.walk_east()
+            self.__walk_east()
         elif direction == "west":
-            self.walk_west()
+            self.__walk_west()
             
-    def walk_south(self):
+    def __walk_south(self):
         # Keep in mind, 'a' is the which list you want
         # and 'b' is the spot in the list
         a,b = self.player_loc[0], self.player_loc[1]
 
         # Error checking so no out of bounds error
         if a < 4:
-            self.house_grid[a][b] = '.'
+            if [a, b] in self.house_locs:
+                self.house_grid[a][b] = 'H'
+            else:
+                self.house_grid[a][b] = '.'
             self.player_loc[0] += 1
+            #if [a,b] in self.house_locs:
+               # houseLocs[][] = "H"
             a,b = self.player_loc[0], self.player_loc[1]
-            if self.house_grid[a][b] == 'H':
-                self.num_houses -= 1
             self.house_grid[a][b] = 'P'
             # Print the locations in reverse order to make sense as coordiantes
             print('You have moved south. You are now at ({}, {}) in the Neighborhood!\n'.format(b, a))
         else: 
             print('You can never leave the Neighborhood... Try another direction :)\n')
    
-    def walk_north(self):
+    def __walk_north(self):
         # Keep in mind, 'a' is the which list you want
         # and 'b' is the spot in the list
         a,b = self.player_loc[0], self.player_loc[1]
 
         # Error checking so no out of bounds error
         if a > 0:
-            self.house_grid[a][b] = '.'
+            if [a, b] in self.house_locs:
+                self.house_grid[a][b] = 'H'
+            else:
+                self.house_grid[a][b] = '.'
             self.player_loc[0] -= 1
             a,b = self.player_loc[0], self.player_loc[1]
-            if self.house_grid[a][b] == 'H':
-                self.num_houses -= 1
             self.house_grid[a][b] = 'P'
             # Print the locations in reverse order to make sense as coordiantes
             print('You have walked north. You are now at ({}, {}) in the Neighborhood!\n'.format(b, a))
         else: 
             print('You can never leave the Neighborhood... Try another direction :)\n')
 
-    def walk_east(self):
+    def __walk_east(self):
         # Keep in mind, 'a' is the which list you want
         # and 'b' is the spot in the list
         a,b = self.player_loc[0], self.player_loc[1]
 
         # Error checking so no out of bounds error
         if b < 4:
-            self.house_grid[a][b] = '.'
+            if [a, b] in self.house_locs:
+                self.house_grid[a][b] = 'H'
+            else:
+                self.house_grid[a][b] = '.'
             self.player_loc[1] += 1
             a,b = self.player_loc[0], self.player_loc[1]
-            if self.house_grid[a][b] == 'H':
-                self.num_houses -= 1
             self.house_grid[a][b] = 'P'
             # Print the locations in reverse order to make sense as coordiantes
             print('You have walked east. You are now at ({}, {}) in the Neighborhood!\n'.format(b, a))
         else: 
             print('You can never leave the Neighborhood... Try another direction :)\n')
 
-    def walk_west(self):
+    def __walk_west(self):
         # Keep in mind, 'a' is the which list you want
         # and 'b' is the spot in the list
         a,b = self.player_loc[0], self.player_loc[1]
 
         # Error checking so no out of bounds error
         if b > 0:
-            self.house_grid[a][b] = '.'
+            if [a, b] in self.house_locs:
+                self.house_grid[a][b] = 'H'
+            else:
+                self.house_grid[a][b] = '.'
             self.player_loc[1] -= 1
             a,b = self.player_loc[0], self.player_loc[1]
-            if self.house_grid[a][b] == 'H':
-                self.num_houses -= 1
             self.house_grid[a][b] = 'P'
             # Print the locations in reverse order to make sense as coordiantes
             print('You have walked west. You are now at ({}, {}) in the Neighborhood!\n'.format(b, a))

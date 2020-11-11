@@ -1,6 +1,9 @@
-class NPC():
+from Observable import Observable
+
+class NPC(Observable):
 
     def __init__(self, x, y):
+        super().__init__()
         self.health_points = x
         self.attack_strength = y
 

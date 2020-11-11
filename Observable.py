@@ -1,9 +1,9 @@
-class Observable(object):
+class Observable():
 
     def __init__(self):
-        self.observables = []
+        self.observers = []
 
-    def add_observables(self, observer):
+    def add_observer(self, observer):
         if observer not in self.observers:
             self.observers.append(observer)
 

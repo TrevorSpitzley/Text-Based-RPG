@@ -1,16 +1,14 @@
+from NPC import NPC
+from Observable import Observable
 import random as rnd
 
 class Vampire(NPC):
     
-    # Will doing this for the super.init make each vampire have the same attack and health?
-    # health = rnd.randint(100, 200)
-    # attack = rnd.randint(10, 20)
-
     def __init__(self):
-        super.__init__(rnd.randint(100, 200), rnd.randint(10, 20))
+        super().__init__(rnd.randint(100, 200), rnd.randint(10, 20))
         self.name = "Vampire"
 
-    def get_hit(weapon, player):
+    def get_hit(self, weapon, player):
         if weapon.name == "ChocolateBars":
             return
         elif weapon.name == "HersheyKisses":

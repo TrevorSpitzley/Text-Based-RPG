@@ -1,20 +1,6 @@
-1.) Can I have the health points and attack mod of a monster set at the top of the class(Show code for better explanation)
-and then pass those attributes as parameters to the super constructor? Or would that mean whatever random values are created will be the same for all Vamps/Weres/Zombs/Ghouls created? (Show code for better explanation)
-
 2.) When I want to decrease a monster's health points, do I need to do 'self.super.health_points'? 
 Or since it inherits health_points from the NPC class can i just use 'self.health_points'?
 
 3.) Observer pattern for when a monster dies and turns into a human
-
-4***.) When I create a monster, v = Vampire(), does the way I have my code setup make it so I don't have to pass parameters 
-in the 'v = Vampire()' call? Because I am setting those in the call to 'super.__init__(x, y)' in the respective monsters 
-constructor? (Show code for better explanation)
-
-5.) In the player.py class, I want to create a list that can only hold 10 elements. Should I just write my function in a way that 
-it only puts 10 items into a list and no more, or is the way I have it written now a valid way to limit how many
-things can be appended to the list? (Show code for better explanation)
-
-6.) For my import statements in House.py and Player.py, do I need to say 'import Zombie.py' with the '.py' extension 
-specifically? Or is saying 'import Zombie' correct?
 
 7.) Do I need a Person object for each House? Honestly unsure. 
