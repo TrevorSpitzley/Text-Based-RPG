@@ -15,10 +15,8 @@ class Werewolf(NPC):
             self.health_points -= (weapon.attack_mod * player.attack_mod)
         elif weapon.name == "SourStraws":
             return 
-        elif weapon.name == "NerdBombs":
-            self.health_points -= (weapon.attack_mod * player.attack_mod)
         else:
-            return
+            self.health_points -= (weapon.attack_mod * player.attack_mod)
 
     def update(self):
         self.observer.update()

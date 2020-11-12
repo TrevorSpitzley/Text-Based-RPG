@@ -12,6 +12,15 @@ class Player():
         self.weapons_list = []
         self.generate_weapons()
 
+    def print_stats(self):
+        print('You currently have {} health points and your attack strength is {}!\n'.format(self.health_points, self.attack_mod))
+
+    def update_weapons(self, weapon):
+        if weapon.uses > 0:
+            weapon.uses -= 1
+        if weapon.uses <= 0:
+            self.weapons_list.remove(weapon)
+
     def update_uses(self, weapon):
         pass
         # if weapon.uses > 0, minus 1
