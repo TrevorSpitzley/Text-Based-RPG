@@ -43,6 +43,8 @@ def main():
                     P.print_weapons()
                     choice = int(input("Which of your weapons would you like to use? Please input a number.\n"))
                     weapon = P.weapons_list[choice]
+                    ##### TODO Decrement weapon uses
+                    # If uses == 0 then remove from list
                     for mon in h.monsters:
                         mon.get_hit(weapon, P)
                         ###### TODO
