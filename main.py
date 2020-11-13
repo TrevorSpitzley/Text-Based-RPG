@@ -81,7 +81,8 @@ def main():
                         if mon.health_points <= 0:
                             print('Congratulations, you have killed a {}!\n'.format(mon.name))
                             spot = h.monsters.index(mon)
-                            del h.monsters[spot]
+                            h.monsters[spot] = Person()
+                            # del h.monsters[spot]
                             h.num_monsters -= 1
                     if h.num_monsters == 0:
                         N.mon_houses -= 1

@@ -1,6 +1,3 @@
-2.) When I want to decrease a monster's health points, do I need to do 'self.super.health_points'? 
-Or since it inherits health_points from the NPC class can i just use 'self.health_points'?
-
 3.) Observer pattern for when a monster dies and turns into a human
 
 7.) Do I need a Person object for each House? Honestly unsure. 
