@@ -17,6 +17,7 @@ class Zombie(NPC):
             self.health_points -= (2 * (weapon.attack_mod * player.attack_mod))
         else:
             self.health_points -= (weapon.attack_mod * player.attack_mod)
+        self.check()
 
     def update(self):
-        self.observer.update()
+        self.observer.update(self)

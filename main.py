@@ -76,23 +76,22 @@ def main():
                     weapon = P.weapons_list[choice]
                     for mon in h.monsters:
                         mon.get_hit(weapon, P)
-                        if mon.health_points > 0:
-                            print('You have hit a {}! It now has {} health points left!\n'.format(mon.name, mon.health_points))
-                        if mon.health_points <= 0:
-                            print('Congratulations, you have killed a {}!\n'.format(mon.name))
-                            spot = h.monsters.index(mon)
-                            h.monsters[spot] = Person()
+                        #if mon.health_points > 0:
+                            #print('You have hit a {}! It now has {} health points left!\n'.format(mon.name, mon.health_points))
+                        #if mon.health_points <= 0:
+                            #print('Congratulations, you have killed a {}!\n'.format(mon.name))
+                            #spot = h.monsters.index(mon)
+                            #h.monsters[spot] = Person()
                             # del h.monsters[spot]
-                            h.num_monsters -= 1
-                    if h.num_monsters == 0:
-                        N.mon_houses -= 1
-                        if N.mon_houses > 0:
-                            print('This house no longer contains monsters... but there are {} left!\n'.format(N.mon_houses))
-                        if N.mon_houses <= 0:
-                            print('You have successfully cleansed The Neighborhood... Congratulations! Until next time... :)\n')
-                            game_on = False
-                            sys.exit(1)
-                        break
+                            #h.num_monsters -= 1
+                    #if h.num_monsters == 0:
+                        #N.mon_houses -= 1
+                        #if N.mon_houses > 0:
+                            #print('This house no longer contains monsters... but there are {} left!\n'.format(N.mon_houses))
+                        #if N.mon_houses <= 0:
+                            #print('You have successfully cleansed The Neighborhood... Congratulations! Until next time... :)\n')
+                            #game_on = False
+                            #sys.exit(1)
                     # Update weapons list/weapon uses after attack
                     P.update_weapons(weapon)
                     m = h.monsters[random.randint(0, (len(h.monsters) - 1) )]

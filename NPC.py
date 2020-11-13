@@ -7,8 +7,9 @@ class NPC(Observable):
         self.health_points = x
         self.attack_strength = y
 
-    def get_health(self):
-        return self.health_points
-
-    def get_attack(self):
-        return self.attack_strength
+    def check(self):
+        if self.health_points > 0:
+            print('You have hit a {}! It now has {} health points left!\n'.format(self.name, self.health_points))
+        if self.health_points <= 0:
+            print('Congratulations, you have killed a {}!\n'.format(self.name))
+            self.update()

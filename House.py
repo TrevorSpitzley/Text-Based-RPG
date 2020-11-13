@@ -1,4 +1,5 @@
 import random
+from Person import Person
 from Observable import Observable
 from Observer import Observer
 from Vampire import Vampire
@@ -9,13 +10,8 @@ from Zombie import Zombie
 class House(Observable, Observer):
 
     def __init__(self):
-        # Multiple calls to super??
         super().__init__()
-        # self.x_axis = x
-        # self.y_axis = y
         self.num_monsters = random.randint(0, 10)
-        # self.grid_location = [x, y]
-        # self.list_location = [y, x]
         self.monsters = []
         self.generate_monsters()
 
@@ -48,7 +44,8 @@ class House(Observable, Observer):
             self.num_monsters -= 1
 
     def update(self, monster):
-        pass
-        # Check if 0, house finished
-            # Decrement num monsters
-            #self.monsters.remove(monster)
+        spot = self.monsters.index(monster)
+        self.monsters[spot] = Person()
+        self.num_monsters -= 1
+        if self.num_monsters == 0:
+            self.observer.update(self)
