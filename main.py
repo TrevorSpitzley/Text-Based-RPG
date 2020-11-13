@@ -10,16 +10,31 @@ def main():
     N = Neighborhood()
     # Player object
     P = Player()
-    print("Welcome to the Neighborhood! When prompted for a " +  
-            "command please type them in using ALL LOWER-CASE " +
-            "letters please!\n")
+    print("Welcome to The Neighborhood! The Game is simple... \n" +
+            "Enter houses and defeat all of the monsters while not dying!\n")
+    print("To see what options you have, type the word \'commands\' and press enter. Then go from there!\n")
+
+    commands = [
+            "\nwalk: This command will allow you to walk in any direction, after inputting a valid direction when prompted.\n",
+            "show monsters: When inside of a house, you can use this command to print the stats of the monsters within the house.\n",
+            "attack: When inside of a house, you can use this command to initiate a battle of you versus the house's monsters.\n",
+            "show map: This command will print an updated grid showing you the location of all houses and yourself\n",
+            "number of houses left: This command will allow you to see the number of houses with monsters left in The Neighborhood.\n",
+            "command list: This will print off the list of available commands that you have at your disposal.\n",
+            "quit: This is self explanatory.\n"
+            ]
+    
+    def print_commands():
+        for cmd in commands:
+            print(cmd)
+
     # Test print grid
     N.print_grid()
 
     def print_space():
         print('\n***********************************************************************************************')
-        print('***********************************************************************************************')
-        print('***********************************************************************************************')
+        print('*************************************************************************************************')
+        print('*************************************************************************************************')
         print('***********************************************************************************************\n')
 
     while(game_on):
@@ -62,13 +77,20 @@ def main():
                     for mon in h.monsters:
                         mon.get_hit(weapon, P)
                         if mon.health_points > 0:
-                            print('You have hit a {}! It now has {} health points left!'.format(mon.name, mon.health_points))
+                            print('You have hit a {}! It now has {} health points left!\n'.format(mon.name, mon.health_points))
                         if mon.health_points <= 0:
-                            print('Congratulations, you have killed a {}!'.format(mon.name))
-                            #h.monsters.remove(mon)
-                            #h.num_monsters -= 1
+                            print('Congratulations, you have killed a {}!\n'.format(mon.name))
+                            spot = h.monsters.index(mon)
+                            del h.monsters[spot]
+                            h.num_monsters -= 1
                     if h.num_monsters == 0:
-                        ##### TODO How should I break out of the while loop here if i kill all the monsters? Currently, if I kill all monsters i still get hit by one
+                        N.mon_houses -= 1
+                        if N.mon_houses > 0:
+                            print('This house no longer contains monsters... but there are {} left!\n'.format(N.mon_houses))
+                        if N.mon_houses <= 0:
+                            print('You have successfully cleansed The Neighborhood... Congratulations! Until next time... :)\n')
+                            game_on = False
+                            sys.exit(1)
                         break
                     # Update weapons list/weapon uses after attack
                     P.update_weapons(weapon)
@@ -95,10 +117,8 @@ def main():
             N.print_grid()
         elif cmd == "number of houses left":
             print('{} houses are left'.format(N.num_houses))
-        elif cmd == "command list":
-            # Make a dictionary with commands and short explanations
-            # Print options line by line
-            break;
+        elif cmd == "commands":
+            print_commands()
         elif cmd == "quit":
             game_on == False
             sys.exit(1)

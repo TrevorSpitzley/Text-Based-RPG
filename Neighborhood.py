@@ -7,6 +7,7 @@ class Neighborhood(Observer):
     def __init__(self):
         # Set up number of houses, location of houses, etc.
         self.num_houses = 4
+        self.mon_houses = 4
         self.house_grid = [
                 ['P', 'H', '.', '.', '.'],
                 ['.', '.', '.', '.', '.'],
