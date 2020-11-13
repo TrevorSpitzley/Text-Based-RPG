@@ -1,3 +1,0 @@
-3.) Observer pattern for when a monster dies and turns into a human
-
-7.) Do I need a Person object for each House? Honestly unsure. 
