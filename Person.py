@@ -7,5 +7,5 @@ class Person(NPC):
         super().__init__(10, rnd.randint(-20, -10))
         self.name = "Person"
 
-    def get_hit(weapon):
+    def get_hit(self, weapon, player):
         pass

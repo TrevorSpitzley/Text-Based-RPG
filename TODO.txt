@@ -1,6 +1,3 @@
-1.) Go to main and error check the input number you receive for weapon selection. 
-Should be easy just can't go over len(list) - 1
+Change num of monsters bakc to 1
 
-2.) Implement a drop mechanism for weapons. When a monster gets hit, pass the player in the update function.
-Then in the NPC class, under the if statement for health == 0, append a randomly generated weapon to player weapon list.
-********* Consider just making a function in player called "generate_random_weapon" for better readability
+4*********) Change player health back to normal

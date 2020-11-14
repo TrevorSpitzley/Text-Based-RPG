@@ -46,12 +46,14 @@ def main():
             N.walk(dir)
         elif cmd == "show monsters" and N.check_player_loc():
             # Get current house
-            curr_house = N.player_loc
-            if curr_house in N.house_locs:
+            #curr_house = N.player_loc
+            #if curr_house in N.house_locs:
                 # Check for proper syntax
-                house_index = N.house_locs.index(curr_house)
-                h = N.houses[house_index]
-                h.show_monsters()
+
+            # Potentially uncomment and use the above lines. If any errors arise.    
+            house_index = N.house_locs.index(N.player_loc)
+            h = N.houses[house_index]
+            h.show_monsters()
         elif cmd == "attack" and N.check_player_loc():
             # Get current house
             curr_house = N.player_loc
@@ -73,34 +75,23 @@ def main():
                         print_space()
                         h.show_monsters()
                         continue
-                    weapon = P.weapons_list[choice]
+                    if choice >= len(P.weapons_list):
+                        print_space()
+                        print("Please choose a valid weapon option.\n")
+                        continue
+                    else:
+                        weapon = P.weapons_list[choice]
                     for mon in h.monsters:
                         mon.get_hit(weapon, P)
-                        #if mon.health_points > 0:
-                            #print('You have hit a {}! It now has {} health points left!\n'.format(mon.name, mon.health_points))
-                        #if mon.health_points <= 0:
-                            #print('Congratulations, you have killed a {}!\n'.format(mon.name))
-                            #spot = h.monsters.index(mon)
-                            #h.monsters[spot] = Person()
-                            # del h.monsters[spot]
-                            #h.num_monsters -= 1
-                    #if h.num_monsters == 0:
-                        #N.mon_houses -= 1
-                        #if N.mon_houses > 0:
-                            #print('This house no longer contains monsters... but there are {} left!\n'.format(N.mon_houses))
-                        #if N.mon_houses <= 0:
-                            #print('You have successfully cleansed The Neighborhood... Congratulations! Until next time... :)\n')
-                            #game_on = False
-                            #sys.exit(1)
                     # Update weapons list/weapon uses after attack
                     P.update_weapons(weapon)
                     m = h.monsters[random.randint(0, (len(h.monsters) - 1) )]
                     # Print monster that attack and resulting player hp
                     P.get_hit(m)
-                    if P.health_points > 0:
-                        print('Oh no! A wild {} has attacked you! You now have {} health points left!'.format(m.name, P.health_points))
+                    if P.health_points > 0 and m.name != "Person":
+                        print('Oh no! A wild {} has attacked you! You now have {} health points left!\n'.format(m.name, P.health_points))
                         print_space()
-                    else:
+                    if P.health_points <= 0:
                         print("Oh no! The player has died. You have lost The Game :)\n")
                         print("Goodbye for now, but if you would like to play again, " + 
                                 "The Neighborhood is always waiting for you... :)\n")
@@ -116,7 +107,7 @@ def main():
         elif cmd == "show map":
             N.print_grid()
         elif cmd == "number of houses left":
-            print('{} houses are left'.format(N.num_houses))
+            print('{} houses are left'.format(N.mon_houses))
         elif cmd == "commands":
             print_commands()
         elif cmd == "quit":

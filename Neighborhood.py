@@ -140,7 +140,7 @@ class Neighborhood(Observer):
     def update(self, house):
         self.mon_houses -= 1
         if self.mon_houses > 0:
-            print('This house no longer contains monsters... but there are {} left!\n'.format(self.mon_houses))
+            print('This house no longer contains monsters... but there are {} houses left!\n'.format(self.mon_houses))
         if self.mon_houses <= 0:
             print('You have successfully cleansed The Neighborhood... Congratulations! Until next time... :)\n')
             game_on = False

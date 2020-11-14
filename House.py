@@ -11,13 +11,18 @@ class House(Observable, Observer):
 
     def __init__(self):
         super().__init__()
-        self.num_monsters = random.randint(0, 10)
+        self.num_monsters = 1
+        #random.randint(0, 10)
         self.monsters = []
         self.generate_monsters()
 
     def show_monsters(self):
-        for mon in self.monsters:
-            print('There is a {} with {} health points'.format(mon.name, mon.health_points))
+        if len(self.monsters) != 0:
+            for mon in self.monsters:
+                if mon.name != "Person":
+                    print('There is a {} with {} health points'.format(mon.name, mon.health_points))
+        else:
+            print('There are no monsters here! Must be your lucky day...')
 
     def generate_monsters(self):
         for i in range(self.num_monsters):
@@ -46,6 +51,7 @@ class House(Observable, Observer):
     def update(self, monster):
         spot = self.monsters.index(monster)
         self.monsters[spot] = Person()
+        self.monsters[spot].add_observer(self)
         self.num_monsters -= 1
         if self.num_monsters == 0:
             self.observer.update(self)

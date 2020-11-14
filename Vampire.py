@@ -17,7 +17,7 @@ class Vampire(NPC):
             self.health_points -= (weapon.attack_mod * player.attack_mod)
         else:
             self.health_points -= (weapon.attack_mod * player.attack_mod)
-        self.check()
+        self.check(player)
 
     def update(self):
         self.observer.update(self)
