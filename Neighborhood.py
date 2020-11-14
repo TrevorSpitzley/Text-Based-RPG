@@ -1,6 +1,8 @@
-import random
+import sys
+
 from House import House
 from Observer import Observer
+
 
 class Neighborhood(Observer):
 
@@ -9,12 +11,12 @@ class Neighborhood(Observer):
         self.num_houses = 4
         self.mon_houses = 4
         self.house_grid = [
-                ['P', 'H', '.', '.', '.'],
-                ['.', '.', '.', '.', '.'],
-                ['H', '.', '.', '.', 'H'],
-                ['.', '.', '.', 'H', '.'],
-                ['.', '.', '.', '.', '.']
-                ]
+            ['P', 'H', '.', '.', '.'],
+            ['.', '.', '.', '.', '.'],
+            ['H', '.', '.', '.', 'H'],
+            ['.', '.', '.', 'H', '.'],
+            ['.', '.', '.', '.', '.']
+        ]
         # List of house locations with (0,0) being upper left spot
         self.house_locs = [[0, 1], [2, 0], [2, 4], [3, 3]]
         self.player_loc = [0, 0]
@@ -28,7 +30,7 @@ class Neighborhood(Observer):
 
         h2 = House()
         self.houses.append(h2)
-        h2.add_observer(h2)
+        h2.add_observer(self)
 
         h3 = House()
         self.houses.append(h3)
@@ -50,11 +52,11 @@ class Neighborhood(Observer):
             self.__walk_east()
         elif direction == "west":
             self.__walk_west()
-            
+
     def __walk_south(self):
         # Keep in mind, 'a' is the which list you want
         # and 'b' is the spot in the list
-        a,b = self.player_loc[0], self.player_loc[1]
+        a, b = self.player_loc[0], self.player_loc[1]
 
         # Error checking so no out of bounds error
         if a < 4:
@@ -63,19 +65,19 @@ class Neighborhood(Observer):
             else:
                 self.house_grid[a][b] = '.'
             self.player_loc[0] += 1
-            #if [a,b] in self.house_locs:
-               # houseLocs[][] = "H"
-            a,b = self.player_loc[0], self.player_loc[1]
+            # if [a,b] in self.house_locs:
+            # houseLocs[][] = "H"
+            a, b = self.player_loc[0], self.player_loc[1]
             self.house_grid[a][b] = 'P'
             # Print the locations in reverse order to make sense as coordiantes
             print('You have moved south. You are now at ({}, {}) in the Neighborhood!\n'.format(b, a))
-        else: 
+        else:
             print('You can never leave the Neighborhood... Try another direction :)\n')
-   
+
     def __walk_north(self):
         # Keep in mind, 'a' is the which list you want
         # and 'b' is the spot in the list
-        a,b = self.player_loc[0], self.player_loc[1]
+        a, b = self.player_loc[0], self.player_loc[1]
 
         # Error checking so no out of bounds error
         if a > 0:
@@ -84,17 +86,17 @@ class Neighborhood(Observer):
             else:
                 self.house_grid[a][b] = '.'
             self.player_loc[0] -= 1
-            a,b = self.player_loc[0], self.player_loc[1]
+            a, b = self.player_loc[0], self.player_loc[1]
             self.house_grid[a][b] = 'P'
             # Print the locations in reverse order to make sense as coordiantes
             print('You have walked north. You are now at ({}, {}) in the Neighborhood!\n'.format(b, a))
-        else: 
+        else:
             print('You can never leave the Neighborhood... Try another direction :)\n')
 
     def __walk_east(self):
         # Keep in mind, 'a' is the which list you want
         # and 'b' is the spot in the list
-        a,b = self.player_loc[0], self.player_loc[1]
+        a, b = self.player_loc[0], self.player_loc[1]
 
         # Error checking so no out of bounds error
         if b < 4:
@@ -103,17 +105,17 @@ class Neighborhood(Observer):
             else:
                 self.house_grid[a][b] = '.'
             self.player_loc[1] += 1
-            a,b = self.player_loc[0], self.player_loc[1]
+            a, b = self.player_loc[0], self.player_loc[1]
             self.house_grid[a][b] = 'P'
             # Print the locations in reverse order to make sense as coordiantes
             print('You have walked east. You are now at ({}, {}) in the Neighborhood!\n'.format(b, a))
-        else: 
+        else:
             print('You can never leave the Neighborhood... Try another direction :)\n')
 
     def __walk_west(self):
         # Keep in mind, 'a' is the which list you want
         # and 'b' is the spot in the list
-        a,b = self.player_loc[0], self.player_loc[1]
+        a, b = self.player_loc[0], self.player_loc[1]
 
         # Error checking so no out of bounds error
         if b > 0:
@@ -122,11 +124,11 @@ class Neighborhood(Observer):
             else:
                 self.house_grid[a][b] = '.'
             self.player_loc[1] -= 1
-            a,b = self.player_loc[0], self.player_loc[1]
+            a, b = self.player_loc[0], self.player_loc[1]
             self.house_grid[a][b] = 'P'
             # Print the locations in reverse order to make sense as coordiantes
             print('You have walked west. You are now at ({}, {}) in the Neighborhood!\n'.format(b, a))
-        else: 
+        else:
             print('You can never leave the Neighborhood... Try another direction :)\n')
 
     def remove_mon_house(self):
@@ -134,7 +136,7 @@ class Neighborhood(Observer):
 
     def print_grid(self):
         for line in self.house_grid:
-            print(*line, sep= ' ')
+            print(*line, sep=' ')
         print('\n')
 
     def update(self, house):

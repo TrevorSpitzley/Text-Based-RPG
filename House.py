@@ -7,12 +7,13 @@ from Werewolf import Werewolf
 from Ghoul import Ghoul
 from Zombie import Zombie
 
+
 class House(Observable, Observer):
 
     def __init__(self):
         super().__init__()
         self.num_monsters = 1
-        #random.randint(0, 10)
+        # random.randint(0, 10)
         self.monsters = []
         self.generate_monsters()
 
@@ -43,7 +44,7 @@ class House(Observable, Observer):
                 w = Werewolf()
                 w.add_observer(self)
                 self.monsters.append(w)
-    
+
     def lose_monster(self):
         if self.num_monsters > 0:
             self.num_monsters -= 1
