@@ -16,12 +16,12 @@ def main():
     print("To see what options you have, type the word \'commands\' and press enter. Then go from there!\n")
 
     commands = [
-        "\nwalk: This command will allow you to walk in any direction, after inputting a valid direction when prompted.\n",
+        "\nwalk: This command will allow you to walk in any direction, after inputting a valid direction when being prompted. Valid directions include north/south/east/west.\n",
         "show monsters: When inside of a house, you can use this command to print the stats of the monsters within the house.\n",
         "attack: When inside of a house, you can use this command to initiate a battle of you versus the house's monsters.\n",
         "show map: This command will print an updated grid showing you the location of all houses and yourself\n",
         "number of houses left: This command will allow you to see the number of houses with monsters left in The Neighborhood.\n",
-        "command list: This will print off the list of available commands that you have at your disposal.\n",
+        "commands: This will print off the list of available commands that you have at your disposal.\n",
         "quit: This is self explanatory.\n"
     ]
 
@@ -65,9 +65,13 @@ def main():
             while h.num_monsters > 0:
                 if P.health_points > 0:
                     P.print_weapons()
-                    choice = int(input("Which of your weapons would you like to use? Please input a number. \n" +
+                    choice = input("Which of your weapons would you like to use? Please input a number. \n" +
                                        "If you would like to see the status of the monsters, input 10!\n" +
-                                       "If you would like to see your own status, input 11!\n"))
+                                       "If you would like to see your own status, input 11!\n")
+                    if choice == "quit":
+                        game_on == False
+                        sys.exit(1)
+                    choice = int(choice)
                     if choice == 11:
                         print_space()
                         P.print_stats()

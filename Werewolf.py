@@ -9,11 +9,11 @@ class Werewolf(NPC):
         self.name = "Werewolf"
 
     def get_hit(self, weapon, player):
-        if weapon.name == "ChocolateBars":
+        if weapon.name == "ChocolateBar":
             return
-        elif weapon.name == "HersheyKisses":
+        elif weapon.name == "HersheyKiss":
             self.health_points -= (weapon.attack_mod * player.attack_mod)
-        elif weapon.name == "SourStraws":
+        elif weapon.name == "SourStraw":
             return 
         else:
             self.health_points -= (weapon.attack_mod * player.attack_mod)

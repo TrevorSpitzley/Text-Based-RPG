@@ -12,8 +12,7 @@ class House(Observable, Observer):
 
     def __init__(self):
         super().__init__()
-        self.num_monsters = 1
-        # random.randint(0, 10)
+        self.num_monsters = random.randint(0, 10)
         self.monsters = []
         self.generate_monsters()
 

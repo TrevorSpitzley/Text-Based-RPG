@@ -7,7 +7,7 @@ from NerdBomb import NerdBomb
 class Player():
 
     def __init__(self):
-        self.health_points = random.randint(10000, 12500)
+        self.health_points = random.randint(1000, 1250)
         self.attack_mod = random.randint(10, 20)
         self.weapons_list = []
         self.generate_weapons()
@@ -59,7 +59,7 @@ class Player():
         self.health_points -= monster.attack_strength
         if monster.name == "Person":
             print('How nice.. a Person has given you {} health points back for being awesome!'.format(-1 * monster.attack_strength))
-            if (random.randint(0, 3)) == 0:
+            if (random.randint(0, 2)) == 0 and len(self.weapons_list) < 10:
                 self.generate_random_weapon()
 
     def print_weapons(self):
