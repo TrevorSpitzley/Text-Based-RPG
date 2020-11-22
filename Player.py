@@ -7,7 +7,7 @@ from NerdBomb import NerdBomb
 class Player():
 
     def __init__(self):
-        self.health_points = random.randint(1000, 1250)
+        self.health_points = random.randint(100, 125)
         self.attack_mod = random.randint(10, 20)
         self.weapons_list = []
         self.generate_weapons()

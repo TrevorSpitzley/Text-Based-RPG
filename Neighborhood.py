@@ -23,6 +23,11 @@ class Neighborhood(Observer):
         self.houses = []
         self.generate_houses()
 
+    def check_houses(self):
+        for house in self.houses:
+            if house.is_empty():
+                self.mon_houses -= 1
+
     def generate_houses(self):
         h1 = House()
         self.houses.append(h1)
@@ -39,6 +44,8 @@ class Neighborhood(Observer):
         h4 = House()
         self.houses.append(h4)
         h4.add_observer(self)
+
+        self.check_houses()
 
     def check_player_loc(self):
         return self.player_loc in self.house_locs

@@ -44,9 +44,8 @@ class House(Observable, Observer):
                 w.add_observer(self)
                 self.monsters.append(w)
 
-    def lose_monster(self):
-        if self.num_monsters > 0:
-            self.num_monsters -= 1
+    def is_empty(self):
+        return self.num_monsters == 0
 
     def update(self, monster):
         spot = self.monsters.index(monster)
