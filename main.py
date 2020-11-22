@@ -46,12 +46,6 @@ def main():
             dir = dir.lower()
             N.walk(dir)
         elif cmd == "show monsters" and N.check_player_loc():
-            # Get current house
-            # curr_house = N.player_loc
-            # if curr_house in N.house_locs:
-            # Check for proper syntax
-
-            # Potentially uncomment and use the above lines. If any errors arise.    
             house_index = N.house_locs.index(N.player_loc)
             h = N.houses[house_index]
             h.show_monsters()
